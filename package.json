@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/Muramasah/wer-chrome-extension/issues"
   },
-  "homepage": "https://github.com/Muramasah/wer-chrome-extension#readme"
+  "homepage": "https://github.com/Muramasah/wer-chrome-extension#readme",
+  "devDependencies": {
+    "prettier": "2.4.1"
+  }
 }
