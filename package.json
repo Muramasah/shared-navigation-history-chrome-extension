@@ -1,0 +1,19 @@
+{
+  "name": "wer-chrome-extension",
+  "version": "0.1.1",
+  "description": "Web Expeditious Retrieval Challenge",
+  "main": "/",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Muramasah/wer-chrome-extension.git"
+  },
+  "author": "Xavier Felipe Medina <medina.xavier.felipe@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Muramasah/wer-chrome-extension/issues"
+  },
+  "homepage": "https://github.com/Muramasah/wer-chrome-extension#readme"
+}
