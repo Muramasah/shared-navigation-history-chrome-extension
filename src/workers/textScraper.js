@@ -1,4 +1,5 @@
 import { recordHistory } from '../useCases/recordHistory';
+import { isElementVisible } from '../utilities/dom';
 
 const visibleText = getPageVisibleText(document);
 const siteUrl = window.location.href;
@@ -15,7 +16,7 @@ function getPageVisibleText(document) {
   const { children } = body;
   const rawVisibleText = getVisibleText(children);
 
-  return sanitizeText(rawVisibleText);
+  return rawVisibleText;
 }
 
 /**
@@ -29,14 +30,6 @@ function getVisibleText(elements) {
     if (isTargetElement(element)) visibleTextParts.push(element.innerText);
 
   return visibleTextParts.join(' ');
-}
-
-/**
- * @param {string} rawText
- * @returns {string}
- */
-function sanitizeText(rawText) {
-  return rawText.replace(/\s\s+/g, ' ').trim();
 }
 
 /**
@@ -56,29 +49,4 @@ function isWantedElement(element) {
     ['SCRIPT', 'STYLE'].includes(tagName) ||
     (tagName === 'OPTION' && !selected)
   );
-}
-
-/**
- * @param {HTMLElement} element
- */
-function isElementVisible(element) {
-  return hasSize(element) && hasComputedVisiblitiy(element);
-}
-
-/**
- * @param {HTMLElement} element
- */
-function hasSize(element) {
-  const { offsetWidth, offsetHeight } = element;
-
-  return !!(offsetWidth && offsetHeight && element.getClientRects().length);
-}
-
-/**
- * @param {HTMLElement} element
- */
-function hasComputedVisiblitiy(element) {
-  const { display, visibility } = window.getComputedStyle(element);
-
-  return display !== 'none' && visibility !== 'hidden';
 }
