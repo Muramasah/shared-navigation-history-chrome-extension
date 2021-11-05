@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 function testListenerCallback() {
   console.log(`It's ALIVE!! MUAHAHAHAHAHA! 🧟`);
 }
