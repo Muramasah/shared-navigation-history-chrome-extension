@@ -1,17 +1,17 @@
-import { recordHistory } from '../useCases/recordHistory';
+import { recordHistory } from '../useCases/indexWebsite';
 import { isElementVisible } from '../utilities/dom';
 
-const visibleText = getPageVisibleText(document);
-const siteUrl = window.location.href;
+const visibleText = getWebsiteVisibleText(document);
+const websiteUrl = window.location.href;
 const tabTitle = document.title;
 
-recordHistory.execute(visibleText, siteUrl, tabTitle).catch(console.error);
+recordHistory.execute(visibleText, websiteUrl, tabTitle).catch(console.error);
 
 /**
  * @param {Document} document
  * @returns {string}
  */
-function getPageVisibleText(document) {
+function getWebsiteVisibleText(document) {
   const { body } = document;
   const { children } = body;
   const rawVisibleText = getVisibleText(children);
