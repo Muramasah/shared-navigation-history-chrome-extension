@@ -2,7 +2,7 @@
  * @param {HTMLElement} element
  */
 export function isElementVisible(element) {
-  return hasSize(element) && hasComputedVisiblitiy(element);
+  return hasSize(element) && hasComputedVisibility(element);
 }
 
 /**
@@ -17,7 +17,7 @@ function hasSize(element) {
 /**
  * @param {HTMLElement} element
  */
-function hasComputedVisiblitiy(element) {
+function hasComputedVisibility(element) {
   const { display, visibility } = window.getComputedStyle(element);
 
   return display !== 'none' && visibility !== 'hidden';
