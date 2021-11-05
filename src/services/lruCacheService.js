@@ -14,7 +14,7 @@ class Node {
   }
 }
 
-class LeastRecentlyUsedService {
+class LRUCacheService {
   #chromeStorageRepository;
   //set default limit of 10 if limit is not passed.
   constructor(chromeStorageRepository, limit = 10) {
@@ -137,6 +137,6 @@ class LeastRecentlyUsedService {
   }
 }
 
-export const lruCacheService = new LeastRecentlyUsedService(
+export const lruCacheService = new LRUCacheService(
   chromeStorageRepository
 );
