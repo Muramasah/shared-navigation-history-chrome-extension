@@ -5,9 +5,8 @@
   "manifest_version": 3,
   "content_scripts": [
     {
-      "matches": ["https://*/*", "http://*/*"],
-      "js": ["build/textScraper.js"],
-      "type": "module"
+      "matches": ["https://en.wikipedia.org/*"],
+      "js": ["build/textScraper.js"]
     }
   ],
   "omnibox": {
