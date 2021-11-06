@@ -8,7 +8,7 @@
 
 import { sanitizeText } from '../utilities/text';
 
-export class History {
+export class Website {
   #text;
   #url;
   #title;
@@ -16,7 +16,7 @@ export class History {
    * @param {string} text
    * @param {string} url
    * @param {string} title
-   * @return {History}
+   * @return {Website}
    */
   constructor(text, url, title) {
     const sanitizedText = sanitizeText(text);
@@ -24,7 +24,7 @@ export class History {
     const sanitizedTitle = title.trim();
 
     if (sanitizedText === '' || sanitizedUrl === '' || sanitizedTitle === '')
-      throw new Error('History must have text, url and title');
+      throw new Error('Website must have text, url and title');
 
     this.#text = sanitizedText;
     this.#url = sanitizedUrl;

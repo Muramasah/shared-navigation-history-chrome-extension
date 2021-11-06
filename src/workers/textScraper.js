@@ -1,11 +1,11 @@
-import { recordHistory } from '../useCases/indexWebsite';
+import { indexWebsite } from '../useCases/indexWebsite';
 import { isElementVisible } from '../utilities/dom';
 
 const visibleText = getWebsiteVisibleText(document);
 const websiteUrl = window.location.href;
 const tabTitle = document.title;
 
-recordHistory.execute(visibleText, websiteUrl, tabTitle).catch(console.error);
+indexWebsite.execute(visibleText, websiteUrl, tabTitle).catch(console.error);
 
 /**
  * @param {Document} document

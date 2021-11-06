@@ -1,14 +1,22 @@
-import { searchIndexRepository } from '../infrastructure/searchIndexRepository';
-import { History } from '../models/Website';
+import { chromeStorageRepository } from '../infrastructure/chromeStorageRepository';
+import { websiteIndexRepository } from '../infrastructure/searchIndexRepository';
+import { Website } from '../models/Website';
 import { lruCacheService } from '../services/lruCacheService';
 
 class IndexWebsite {
   #lruCacheService;
-  #searchIndexRepository;
+  #storageRepository;
+  #websiteIndexRepository;
 
-  constructor(lruCacheService, searchIndexRepository) {
+  /**
+   * @param {LRUCacheService} lruCacheService
+   * @param {ChromeStorageRepository} storageRepository
+   * @param {WebsiteIndexRepository} websiteIndexRepository
+   */
+  constructor(lruCacheService, storageRepository, websiteIndexRepository) {
     this.#lruCacheService = lruCacheService;
-    this.#searchIndexRepository = searchIndexRepository;
+    this.#storageRepository = storageRepository;
+    this.#websiteIndexRepository = websiteIndexRepository;
   }
 
   /**
@@ -18,37 +26,52 @@ class IndexWebsite {
    * @return {Promise<void>}
    */
   async execute(text, url, title) {
-    const newWebsite = new History(text, url, title);
-    const cachedWebsiteText = await this.getCachedSiteText(newWebsite);
+    await this.#syncCacheWithStore();
 
-    console.log({ cachedSiteText: cachedWebsiteText });
+    const newWebsite = new Website(text, url, title);
 
-    if (this.#shouldSaveWebsiteText(cachedWebsiteText, newWebsite)) {
-      await this.#saveInCache(newWebsite);
-      await this.#searchIndexRepository.record(newWebsite);
-      return;
-    }
+    await this.#index(newWebsite);
   }
 
-  async getCachedSiteText(newHistoryModel) {
-    await this.#lruCacheService.sync();
+  async #index(newWebsite) {
+    const cachedWebsite = await this.#getCachedWebsite(newWebsite);
 
-    return await this.#lruCacheService.read(newHistoryModel.url);
+    if (!this.#shouldIndexWebsite(newWebsite, cachedWebsite)) return;
+
+    await this.#saveInCache(newWebsite);
+    await this.#websiteIndexRepository.index(newWebsite);
   }
 
-  #shouldSaveWebsiteText(cachedWebsiteText, websiteModel) {
-    return !cachedWebsiteText || cachedWebsiteText !== websiteModel.text; // may be redundant
+  async #getCachedWebsite(newWebsite) {
+    const rawStoredWebsite = await this.#lruCacheService.read(newWebsite.url);
+
+    if (!rawStoredWebsite) return null;
+
+    const websiteDTO = JSON.parse(rawStoredWebsite);
+
+    return new Website(websiteDTO.text, websiteDTO.url, websiteDTO.title);
   }
 
-  async #saveInCache(newHistoryModel) {
-    await this.#lruCacheService.write(
-      newHistoryModel.url,
-      JSON.stringify(newHistoryModel.toPlainObject())
-    );
+  async #syncCacheWithStore() {
+    const storedWebsites = await this.#storageRepository.getAll();
+
+    await this.#lruCacheService.sync(storedWebsites);
+  }
+
+  #shouldIndexWebsite(website, cachedWebsite) {
+    return !cachedWebsite || cachedWebsite.text !== website.text; // may be redundant
+  }
+
+  async #saveInCache(newWebsite) {
+    const key = newWebsite.url;
+    const value = JSON.stringify(newWebsite.toPlainObject());
+
+    await this.#lruCacheService.write(key, value, this.#storageRepository.set);
   }
 }
 
-export const recordHistory = new IndexWebsite(
+export const indexWebsite = new IndexWebsite(
   lruCacheService,
-  searchIndexRepository
+  chromeStorageRepository,
+  websiteIndexRepository
 );

@@ -7,15 +7,15 @@ const defaultConfig = {
   },
 };
 
-class SearchIndexRepository {
+class WebsiteIndexRepository {
   /**
-   * @param {Website} websiteModel
+   * @param {Website} website
    * @returns {Promise<void>}
    */
-  async record(websiteModel) {
+  async index(website) {
     const endpoint = `${defaultConfig.baseURL}${'/websites'}`;
 
-    const stringifiedWebsite = JSON.stringify(websiteModel.toPlainObject());
+    const stringifiedWebsite = JSON.stringify(website.toPlainObject());
 
     await fetch(endpoint, {
       method: 'PUT',
@@ -25,4 +25,4 @@ class SearchIndexRepository {
   }
 }
 
-export const searchIndexRepository = new SearchIndexRepository();
+export const websiteIndexRepository = new WebsiteIndexRepository();
