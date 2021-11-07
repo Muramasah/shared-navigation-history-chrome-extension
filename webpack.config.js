@@ -6,9 +6,9 @@ module.exports = {
   mode: 'development',
   devtool: 'source-map',
   entry: {
-    omnibox: './src/workers/omnibox.js',
-    textScraper: './src/workers/textScraper.js',
-    searchResults: './src/workers/searchResults.js',
+    omnibox: './src/application/omnibox.js',
+    textScraper: './src/application/textScraper.js',
+    searchResults: './src/application/searchResults.js',
   },
   output: {
     path: __dirname + '/extension/build',
@@ -31,7 +31,7 @@ module.exports = {
   plugins: [
     new HtmlWebpackPlugin({
       filename: 'search-results.html',
-      template: 'src/views/search-results.html',
+      template: 'src/application/views/search-results.html',
       excludeChunks: ['omnibox', 'textScraper'],
     }),
   ],
