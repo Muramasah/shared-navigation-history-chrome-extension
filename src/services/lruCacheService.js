@@ -49,8 +49,6 @@ class LRUCacheService {
   async write(key, value, callback) {
     const existingNode = this.cacheMap[key];
 
-    console.log('write', { key, value, existingNode });
-
     if (existingNode) {
       this.detach(existingNode);
       this.size--;
