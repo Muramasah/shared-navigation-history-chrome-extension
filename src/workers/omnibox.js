@@ -1,7 +1,14 @@
 /* eslint-disable no-undef */
-function testListenerCallback() {
-  console.log(`It's ALIVE!! MUAHAHAHAHAHA! 🧟`);
-}
 
-chrome.omnibox.onInputChanged.addListener(testListenerCallback);
-chrome.omnibox.onInputStarted.addListener(testListenerCallback);
+chrome.omnibox.onInputEntered.addListener(onQueryEntered);
+
+const SEARCH_RESULT_PAGE_URL = chrome.runtime.getURL(
+  'build/search-results.html'
+);
+
+/**
+ * @param {string} query
+ */
+function onQueryEntered(query) {
+  chrome.tabs.create({ url: `${SEARCH_RESULT_PAGE_URL}?query=${query}` });
+}

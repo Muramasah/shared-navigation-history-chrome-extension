@@ -1,11 +1,16 @@
+// eslint-disable-next-line no-undef
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+
 /* eslint-disable no-undef */
 module.exports = {
+  mode: 'development',
+  devtool: 'source-map',
   entry: {
     omnibox: './src/workers/omnibox.js',
     textScraper: './src/workers/textScraper.js',
+    searchResults: './src/workers/searchResults.js',
   },
   output: {
-    filename: '[name].js',
     path: __dirname + '/build',
   },
   module: {
@@ -23,4 +28,11 @@ module.exports = {
       },
     ],
   },
+  plugins: [
+    new HtmlWebpackPlugin({
+      filename: 'search-results.html',
+      template: 'src/views/search-results.html',
+      excludeChunks: ['omnibox', 'textScraper'],
+    }),
+  ],
 };
