@@ -1,25 +1,23 @@
-const defaultConfig = {
-  baseURL: 'http://localhost:8888/search_api/v1/websites',
-  headers: {
-    Accept: 'application/json',
-    'Cache-Control': 'no-cache',
-    'Content-type': 'application/json',
-  },
-};
+/** The base url should be composed by a environment variable */
+const BASE_URL = 'http://localhost:8888/search_api/v1/websites';
 
+/** In order to avoid code duplication this repository should use a fetch service
+ *  as explicit dependency. */
 class WebsiteIndexRepository {
   /**
    * @param {Website} website
    * @returns {Promise<void>}
    */
   async index(website) {
-    const endpoint = defaultConfig.baseURL;
-
     const stringifiedWebsite = JSON.stringify(website.toPlainObject());
 
-    await fetch(endpoint, {
+    await fetch(BASE_URL, {
       method: 'PUT',
-      headers: defaultConfig.headers,
+      headers: {
+        Accept: 'application/json',
+        'Cache-Control': 'no-cache',
+        'Content-type': 'application/json',
+      },
       body: stringifiedWebsite,
     });
   }
@@ -30,7 +28,7 @@ class WebsiteIndexRepository {
    */
 
   async search(query) {
-    const endpoint = `${defaultConfig.baseURL}?query=${query}`;
+    const endpoint = `${BASE_URL}?query=${query}`;
 
     const response = await fetch(endpoint);
 
