@@ -38,8 +38,8 @@ class IndexWebsite {
 
     if (!this.#shouldIndexWebsite(newWebsite, cachedWebsite)) return;
 
-    await this.#saveInCache(newWebsite);
     await this.#websiteIndexRepository.index(newWebsite);
+    await this.#saveInCache(newWebsite);
   }
 
   async #getCachedWebsite(newWebsite) {
