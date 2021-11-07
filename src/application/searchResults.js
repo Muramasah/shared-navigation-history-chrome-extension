@@ -1,4 +1,4 @@
-import { searchWebsite } from '../useCases/searchWebsite';
+import { searchWebsite } from '../domain/useCases/searchWebsite';
 
 window.onload = onLoadHandler;
 

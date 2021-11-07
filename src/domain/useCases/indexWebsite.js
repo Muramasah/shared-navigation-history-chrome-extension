@@ -1,5 +1,5 @@
-import { chromeStorageRepository } from '../infrastructure/chromeStorageRepository';
-import { websiteIndexRepository } from '../infrastructure/searchIndexRepository';
+import { chromeStorageRepository } from '../../infrastructure/chromeStorageRepository';
+import { websiteIndexRepository } from '../../infrastructure/searchIndexRepository';
 import { Website } from '../models/Website';
 import { lruCacheService } from '../services/lruCacheService';
 

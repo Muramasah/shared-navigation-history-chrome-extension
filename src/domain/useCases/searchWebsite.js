@@ -1,4 +1,4 @@
-import { websiteIndexRepository } from '../infrastructure/searchIndexRepository';
+import { websiteIndexRepository } from '../../infrastructure/searchIndexRepository';
 
 class SearchWebsite {
   #websiteIndexRepository;

@@ -1,3 +1,5 @@
+import { sanitizeText } from '../../utilities/text';
+
 /**
  * This class represent our main domain model, its properties should be value
  * objects to abstract domain logic such as validations. The models in general
@@ -5,8 +7,6 @@
  * logic used here should be part of a domain service such as a use case.
  *
  */
-
-import { sanitizeText } from '../utilities/text';
 
 export class Website {
   #text;

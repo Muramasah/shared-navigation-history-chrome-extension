@@ -1,4 +1,4 @@
-import { indexWebsite } from '../useCases/indexWebsite';
+import { indexWebsite } from '../domain/useCases/indexWebsite';
 import { isElementVisible } from '../utilities/dom';
 
 const visibleText = getWebsiteVisibleText(document);
