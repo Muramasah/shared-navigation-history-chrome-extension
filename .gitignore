@@ -1,7 +1,7 @@
 # VSCode
 .vscode
 # Build
-build/
+extension/build/
 # Logs
 logs
 *.log

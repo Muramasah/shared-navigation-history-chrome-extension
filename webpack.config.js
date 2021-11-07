@@ -11,7 +11,7 @@ module.exports = {
     searchResults: './src/workers/searchResults.js',
   },
   output: {
-    path: __dirname + '/build',
+    path: __dirname + '/extension/build',
   },
   module: {
     rules: [

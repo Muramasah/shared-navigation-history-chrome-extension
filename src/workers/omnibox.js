@@ -3,7 +3,7 @@
 chrome.omnibox.onInputEntered.addListener(onQueryEntered);
 
 const SEARCH_RESULT_PAGE_URL = chrome.runtime.getURL(
-  'build/search-results.html'
+  'extension/search-results.html'
 );
 
 /**
