@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+
+    <title>Web Expeditious Retrieval - search results</title>
+    <style>
+      @font-face {
+        font-family: 'Aeonik';
+        src: url('/public/Aeonik-Regular.woff2') format('woff2');
+        src: url('/public/Aeonik-Medium.woff2') format('woff2');
+        src: url('/public/Aeonik-Bold.woff2') format('woff2');
+      }
+
+      html,
+      body,
+      div,
+      span,
+      applet,
+      object,
+      iframe,
+      h1,
+      h2,
+      h3,
+      h4,
+      h5,
+      h6,
+      p,
+      blockquote,
+      pre,
+      a,
+      abbr,
+      acronym,
+      address,
+      big,
+      cite,
+      code,
+      del,
+      dfn,
+      em,
+      img,
+      ins,
+      kbd,
+      q,
+      s,
+      samp,
+      small,
+      strike,
+      strong,
+      sub,
+      sup,
+      tt,
+      var,
+      b,
+      u,
+      i,
+      center,
+      dl,
+      dt,
+      dd,
+      ol,
+      ul,
+      li,
+      fieldset,
+      form,
+      label,
+      legend,
+      table,
+      caption,
+      tbody,
+      tfoot,
+      thead,
+      tr,
+      th,
+      td,
+      article,
+      aside,
+      canvas,
+      details,
+      embed,
+      figure,
+      figcaption,
+      footer,
+      header,
+      hgroup,
+      menu,
+      nav,
+      output,
+      ruby,
+      section,
+      summary,
+      time,
+      mark,
+      audio,
+      video {
+        margin: 0;
+        padding: 0;
+        border: 0;
+        font-size: 100%;
+        font: inherit;
+        vertical-align: baseline;
+        outline: none;
+        -webkit-font-smoothing: antialiased;
+        -webkit-text-size-adjust: 100%;
+        -ms-text-size-adjust: 100%;
+        -webkit-box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        box-sizing: border-box;
+      }
+
+      html {
+        overflow-y: scroll;
+      }
+
+      body {
+        background: rgb(0, 0, 0);
+        background-image: url('/public/careers-header.png');
+        background-position: center top;
+        font-family: 'Aeonik', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+        font-size: 62.5%;
+        line-height: 1;
+        color: #fff;
+        padding: 22px 10px;
+        padding-bottom: 55px;
+      }
+
+      article,
+      aside,
+      details,
+      figcaption,
+      figure,
+      footer,
+      header,
+      hgroup,
+      menu,
+      nav,
+      section {
+        display: block;
+      }
+      ol,
+      ul {
+        list-style: none;
+      }
+
+      input,
+      textarea {
+        -webkit-font-smoothing: antialiased;
+        -webkit-text-size-adjust: 100%;
+        -ms-text-size-adjust: 100%;
+        -webkit-box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        box-sizing: border-box;
+        outline: none;
+      }
+
+      blockquote,
+      q {
+        quotes: none;
+      }
+      blockquote:before,
+      blockquote:after,
+      q:before,
+      q:after {
+        content: '';
+        content: none;
+      }
+      strong,
+      table {
+        border-collapse: collapse;
+        border-spacing: 0;
+      }
+
+      img {
+        border: 0;
+        max-width: 100%;
+      }
+
+      h1 {
+        font-weight: bold;
+        font-size: 4em;
+        margin-bottom: 1em;
+        text-align: center;
+      }
+
+      h2 {
+        font-weight: bold;
+        font-size: 3em;
+        margin-bottom: 1em;
+        text-align: center;
+      }
+
+      .wrapper {
+        display: block;
+        max-width: 850px;
+        margin: 0 auto;
+        box-shadow: 2px 2px 3px -1px rgba(240, 237, 237, 0.35);
+      }
+
+      .results-table {
+        width: 100%;
+        margin: 0 auto;
+        font-size: 1.2em;
+        margin-bottom: 15px;
+      }
+
+      .results-table thead {
+        background: #707172;
+      }
+      .results-table thead tr th {
+        font-weight: bold;
+        text-align: left;
+        padding: 12px;
+      }
+      .results-table tbody {
+        background: #fff;
+        color: #707172;
+      }
+      .results-table tbody tr td {
+        text-align: left;
+        padding: 12px;
+      }
+    </style>
+  </head>
+
+  <body>
+    <header>
+      <h1>Web Expeditious Retrieval</h1>
+    </header>
+
+    <main class="wrapper">
+      <table
+        id="results-table"
+        class="results-table"
+        cellspacing="0"
+        cellpadding="0"
+      >
+        <thead>
+          <tr>
+            <th><span>Title</span></th>
+            <th><span>URL</span></th>
+          </tr>
+        </thead>
+        <tbody class="search-results"></tbody>
+      </table>
+    </main>
+  </body>
+</html>

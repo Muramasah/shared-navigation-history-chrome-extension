@@ -1,0 +1,23 @@
+{
+  "name": "WER",
+  "description": "Web Expeditious Retrieval Challenge",
+  "version": "0.1.1",
+  "manifest_version": 3,
+  "content_scripts": [
+    {
+      "matches": ["https://*/*", "http://*/*"],
+      "js": ["build/textScraper.js"]
+    }
+  ],
+  "omnibox": {
+    "keyword": "wer"
+  },
+  "permissions": ["tabs", "storage"],
+  "icons": {
+    "16": "public/search-16-16.ico"
+  },
+  "background": {
+    "service_worker": "build/omnibox.js",
+    "type": "module"
+  }
+}
