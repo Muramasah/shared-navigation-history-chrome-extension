@@ -16,7 +16,7 @@ class SearchWebsite {
    */
   async execute(query, callback) {
     const searchResults = await this.#websiteIndexRepository.search(query);
-    callback(searchResults);
+    callback(query, searchResults);
   }
 }
 
