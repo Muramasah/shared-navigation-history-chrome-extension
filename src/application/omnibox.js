@@ -10,5 +10,6 @@ const SEARCH_RESULT_PAGE_URL = chrome.runtime.getURL(
  * @param {string} query
  */
 function onQueryEntered(query) {
-  chrome.tabs.create({ url: `${SEARCH_RESULT_PAGE_URL}?query=${query}` });
+  if (query.trim() !== '')
+    chrome.tabs.create({ url: `${SEARCH_RESULT_PAGE_URL}?query=${query}` });
 }
