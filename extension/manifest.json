@@ -5,7 +5,7 @@
   "manifest_version": 3,
   "content_scripts": [
     {
-      "matches": ["https://en.wikipedia.org/*"],
+      "matches": ["https://*/*", "http://*/*"],
       "js": ["build/textScraper.js"]
     }
   ],
