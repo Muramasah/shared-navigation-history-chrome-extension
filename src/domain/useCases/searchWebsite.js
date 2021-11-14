@@ -1,6 +1,6 @@
 import { websiteIndexRepository } from '../../infrastructure/searchIndexRepository';
 
-class SearchWebsite {
+export class SearchWebsite {
   #websiteIndexRepository;
 
   /**
@@ -12,6 +12,7 @@ class SearchWebsite {
 
   /**
    * @param {string} query
+   * @param {Function} callback
    * @return {Promise<void>}
    */
   async execute(query, callback) {
